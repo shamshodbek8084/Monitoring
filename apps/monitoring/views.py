@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .serializer import PaymentSerializer, ProjectSerializer
-from .models import Payment, Project
+from .serializer import PaymentSerializer, ProjectSerializer, Registration_serializer
+from .models import Payment, Project, User
 from rest_framework.response import Response
 from rest_framework.views import APIView 
 from rest_framework.permissions import AllowAny
@@ -39,7 +39,7 @@ from rest_framework.generics import (CreateAPIView,
         
 class Create_project(CreateAPIView):
     queryset = Project.objects.filter(is_active = True)
-    serializer = ProjectSerializer
+    serializer_class = ProjectSerializer
     permission_classes = (AllowAny, )
 
 class Read_project(RetrieveAPIView):
@@ -49,18 +49,25 @@ class Read_project(RetrieveAPIView):
 
 class List_project(ListAPIView):
     queryset = Project.objects.all()
-    serializer = ProjectSerializer
+    serializer_class = ProjectSerializer
     permission_classes = (AllowAny, )
 
 class Update_project(UpdateAPIView):
     queryset = Project.objects.all()
-    serializer = ProjectSerializer
+    serializer_class = ProjectSerializer
     permission_classes = (AllowAny, )
 
 class Delete_project(DestroyAPIView):
     queryset = Project.objects.filter(is_active = True)
-    serializer = ProjectSerializer
+    serializer_class = ProjectSerializer
     permission_classes = (AllowAny, )
+
+class Register_User(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = Registration_serializer
+    permission_classes = (AllowAny, )
+
+
 
 
 
