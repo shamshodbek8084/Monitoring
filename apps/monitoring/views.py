@@ -36,7 +36,7 @@ from rest_framework.generics import (CreateAPIView,
 #         else:
 #             return Response(serializer.data)
     
-        
+#  ----------------------------------------------Project------------------------------------
 class Create_project(CreateAPIView):
     queryset = Project.objects.filter(is_active = True)
     serializer_class = ProjectSerializer
@@ -62,9 +62,39 @@ class Delete_project(DestroyAPIView):
     serializer_class = ProjectSerializer
     permission_classes = (AllowAny, )
 
+
+#  ----------------------------------------------Register------------------------------------
+
 class Register_User(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = Registration_serializer
+    permission_classes = (AllowAny, )
+
+#  ----------------------------------------------Payment------------------------------------
+
+class Create_payment(CreateAPIView):
+    queryset = Payment.objects.filter(is_active = True)
+    serializer_class = PaymentSerializer
+    permission_classes = (AllowAny, )
+
+class Read_payment(RetrieveAPIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+    permission_classes = (AllowAny, )
+
+class List_payment(ListAPIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+    permission_classes = (AllowAny, )
+
+class Update_payment(UpdateAPIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+    permission_classes = (AllowAny, )
+
+class Delete_payment(DestroyAPIView):
+    queryset = Payment.objects.filter(is_active = True)
+    serializer_class = PaymentSerializer
     permission_classes = (AllowAny, )
 
 

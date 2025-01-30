@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Project, Payment
 from django.contrib.auth.models import User
 
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
@@ -31,6 +33,8 @@ class Registration_serializer(serializers.ModelSerializer):
             email=validated_data['email'],
             password=validated_data['password1']
         )
+        user.is_staff = True
+        user.save()
         return user
 
 
